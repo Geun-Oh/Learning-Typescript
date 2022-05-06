@@ -10,3 +10,8 @@ nomadcoder의 'Typescript로 블록체인 만들기' 강의를 보고 연습하�
 
 type, readonly, interface, class, public, private, protected
 각 키워드들을 보고 어떤 기능을 하는지 떠올릴 수 있을 것.
+
+### 22.05.06
+
+어제부터 typescript 핸드북에 대한 정리를 시작했다.
+기본 타입과 함수에 대한 정리를 마쳤고, 인터페이스에 대한 내용을 다루는 글을 올리려고 한다.
