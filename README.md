@@ -3,6 +3,7 @@ typescript를 익히고 예제를 배우는 repo입니다.
 
 nomadcoder의 'Typescript로 블록체인 만들기' 강의를 보고 연습하는 repo입니다.
 
+<<<<<<< HEAD
 
 ### 22.05.03
 
@@ -15,3 +16,8 @@ type, readonly, interface, class, public, private, protected
 
 어제부터 typescript 핸드북에 대한 정리를 시작했다.
 기본 타입과 함수에 대한 정리를 마쳤고, 인터페이스에 대한 내용을 다루는 글을 올리려고 한다.
+=======
+### 22.05.07
+
+ts-blockchain 강의를 수강 중. ts 기본 설정을 하는 방법과 js 모듈을 어떻게 ts가 이해하는지에 대해 배웠다.
+>>>>>>> 2bed9fd (22.05.07 commit)

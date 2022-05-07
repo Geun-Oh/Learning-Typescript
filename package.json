@@ -1,0 +1,22 @@
+{
+  "name": "learning-typescript",
+  "version": "1.0.0",
+  "description": "typescript를 익히고 예제를 배우는 repo입니다.",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geun-Oh/Learning-Typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geun-Oh/Learning-Typescript/issues"
+  },
+  "homepage": "https://github.com/Geun-Oh/Learning-Typescript#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}
