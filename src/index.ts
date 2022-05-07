@@ -1,2 +1,3 @@
-import { init } from './myPackage';
+import { exit } from 'myPackage';
 
+exit
