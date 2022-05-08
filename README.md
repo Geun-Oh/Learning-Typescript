@@ -21,3 +21,7 @@ type, readonly, interface, class, public, private, protected
 
 ts-blockchain 강의를 수강 중. ts 기본 설정을 하는 방법과 js 모듈을 어떻게 ts가 이해하는지에 대해 배웠다.
 >>>>>>> 2bed9fd (22.05.07 commit)
+
+### 22.05.08
+
+벨로퍼트님의 '리액트에서 타입스크립트 사용하기' 글을 읽고 예제를 연습중이다. 재밌다!!
