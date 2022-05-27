@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "build", // 빌드라는 폴더에 만들어진 코드를 넣을 것이라고 명시해줌
+        "target": "ES6", // 컴파일해줄 js 버전을 설정함
+        "lib": ["ES6", "DOM"], // ES6를 지원하는 브라우저 환경에서 구동할 것이라고 명시해줌
+        "strict": true, // ts가 까다롭게 검사하도록 만든다.
+        // "allowJs": true, declaration 파일이 없어도 js와 ts를 혼용할 수 있도록 만들어준다.
+        "esModuleInterop": true,
+        "module": "CommonJS",
+    },
+}
