@@ -6,12 +6,15 @@ let number: string[] = input[1].split(" ");
 let answer = 0;
 
 for(let i = 0; i < number.length; i++){
-    let targetNumber = parseInt(number[i]);
+    let targetNumber: number = parseInt(number[i]);
     if(targetNumber === 2 || targetNumber === 3){
         answer++;
         continue;
     }
-    for(let j = 2; j < Math.sqrt(targetNumber); j++){
+    if(targetNumber <= 1 || targetNumber % 2 === 0){
+        continue;
+    }
+    for(let j = 2; j <= Math.sqrt(targetNumber); j++){
         if(targetNumber % j === 0){
             break;
         }
