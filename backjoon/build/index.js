@@ -40,9 +40,20 @@ class StackClass {
     }
 }
 const myStack = new StackClass();
-console.log(myStack);
-myStack.push(1);
-console.log(myStack);
-myStack.push(2);
-console.log(myStack);
-console.log(myStack.top());
+const fs = require('fs');
+const input = fs.readFileSync('./예제.txt').toString().split('\n');
+for (let i = 1; i < input.length; i++) {
+    switch (input[i]) {
+        case "top":
+            console.log(myStack.top());
+        case "size":
+            console.log(myStack.size());
+        case "pop":
+            console.log(myStack.pop());
+        case "empty":
+            console.log(myStack.empty());
+        default:
+            const pushNumber = input[i].split(" ")[1];
+            myStack.push(parseInt(pushNumber));
+    }
+}
