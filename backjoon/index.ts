@@ -1,25 +1,63 @@
-const fs = require("fs");
-const input = fs.readFileSync("./예제.txt").toString().split("\n");
+interface MyStack {
+    size(): number;
+    push(x: number): void;
+    pop(): number;
+    empty(): 0 | 1;
+    top(): number;
+}
 
-let count: number = parseInt(input[0]);
-let number: string[] = input[1].split(" ");
-let answer = 0;
+type MyStackNode = {
+    value: number;
+    next?: MyStackNode;
+}
 
-for(let i = 0; i < number.length; i++){
-    let targetNumber: number = parseInt(number[i]);
-    if(targetNumber === 2 || targetNumber === 3){
-        answer++;
-        continue;
+class StackClass implements MyStack {
+    private _size: number = 0;
+    private head?: MyStackNode;
+    private tail?: MyStackNode;
+
+    size(): number {
+        return this._size;
     }
-    if(targetNumber <= 1 || targetNumber % 2 === 0){
-        continue;
-    }
-    for(let j = 2; j <= Math.sqrt(targetNumber); j++){
-        if(targetNumber % j === 0){
-            break;
+
+    push(x: number): void {
+        const node: MyStackNode = { value: x };
+        if(!this.head) {
+            this.head = node;
+        } else {
+            node.next = this.head;
+            this.head = node;
         }
-        answer++;
+        this._size++;
+    }
+
+    pop(): number {
+        if(!this.head) {
+            return -1;
+        } else {
+            const value = this.head!.value;
+            this.head = this.head.next;
+            this._size--;
+            return value;
+        }
+    }
+
+    empty(): 0 | 1 {
+        if(!this.head) return 1;
+        return 0;
+    }
+
+    top(): number {
+        if(!this.head) return -1;
+        return this.head.value;
     }
 }
 
-console.log(answer);
+const myStack = new StackClass();
+
+console.log(myStack);
+myStack.push(1);
+console.log(myStack);
+myStack.push(2);
+console.log(myStack);
+console.log(myStack.top());

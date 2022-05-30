@@ -1,20 +1,48 @@
 "use strict";
-const fs = require("fs");
-const input = fs.readFileSync("./예제.txt").toString().split("\n");
-let count = parseInt(input[0]);
-let number = input[1].split(" ");
-let answer = 0;
-for (let i = 0; i < number.length; i++) {
-    let targetNumber = parseInt(number[i]);
-    if (targetNumber === 2 || targetNumber === 3) {
-        answer++;
-        continue;
+class StackClass {
+    constructor() {
+        this._size = 0;
     }
-    for (let j = 2; j < Math.sqrt(targetNumber); j++) {
-        if (targetNumber % j === 0) {
-            break;
+    size() {
+        return this._size;
+    }
+    push(x) {
+        const node = { value: x };
+        if (!this.head) {
+            this.head = node;
         }
-        answer++;
+        else {
+            node.next = this.head;
+            this.head = node;
+        }
+        this._size++;
+    }
+    pop() {
+        if (!this.head) {
+            return -1;
+        }
+        else {
+            const value = this.head.value;
+            this.head = this.head.next;
+            this._size--;
+            return value;
+        }
+    }
+    empty() {
+        if (!this.head)
+            return 1;
+        return 0;
+    }
+    top() {
+        if (!this.head)
+            return -1;
+        return this.head.value;
     }
 }
-console.log(answer);
+const myStack = new StackClass();
+console.log(myStack);
+myStack.push(1);
+console.log(myStack);
+myStack.push(2);
+console.log(myStack);
+console.log(myStack.top());
