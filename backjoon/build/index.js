@@ -38,22 +38,41 @@ class StackClass {
             return -1;
         return this.head.value;
     }
-}
-const myStack = new StackClass();
-const fs = require('fs');
-const input = fs.readFileSync('./예제.txt').toString().split('\n');
-for (let i = 1; i < input.length; i++) {
-    switch (input[i]) {
-        case "top":
-            console.log(myStack.top());
-        case "size":
-            console.log(myStack.size());
-        case "pop":
-            console.log(myStack.pop());
-        case "empty":
-            console.log(myStack.empty());
-        default:
-            const pushNumber = input[i].split(" ")[1];
-            myStack.push(parseInt(pushNumber));
+    clear() {
+        if (!this.head)
+            return;
+        this.head = undefined;
+        this._size = 0;
     }
 }
+const leftStack = new StackClass();
+const rightStack = new StackClass();
+const fs = require('fs');
+const input = fs.readFileSync('./예제.txt').toString().split('\n');
+const answer = [];
+for (let i = 1; i < input.length; i++) {
+    const inputText = input[i].split("");
+    console.log(inputText);
+    while (leftStack.size() >= rightStack.size()) {
+        for (let j = 0; j < inputText.length; j++) {
+            switch (inputText[j]) {
+                case "(":
+                    leftStack.push(1);
+                    break;
+                case ")":
+                    rightStack.push(1);
+                    break;
+            }
+        }
+    }
+    console.log(leftStack.size(), rightStack.size());
+    if (leftStack.size() !== rightStack.size()) {
+        answer.push("NO");
+    }
+    if (leftStack.size() === rightStack.size()) {
+        answer.push("YES");
+    }
+    leftStack.clear();
+    rightStack.clear();
+}
+console.log(answer.join("\n"));

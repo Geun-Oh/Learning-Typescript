@@ -34,3 +34,8 @@ ts-blockchain 강의를 수강 중. ts 기본 설정을 하는 방법과 js 모�
 ### 22.05.30
 
 타입스크립트로 스택 구현하기에 성공했다. 스택은 push, pop, size, empty, top의 다섯 가지 메서드를 가진다. 구글링을 통해 찾은 예제를 한 번 구현하고 백준에 있는 문제대로 혼자 구현하는 것을 연습하였다.
+
+### 22.05.31
+
+9012번 문제를 타입스크립트로 푸는 중. while 문을 사용하는 과정에서 메모리 누수가 심한 것 같다. 다시 잘 짜보도록 하자.
+Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory 라고 한다. 

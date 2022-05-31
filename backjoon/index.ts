@@ -4,6 +4,7 @@ interface MyStack {
     pop(): number;
     empty(): 0 | 1;
     top(): number;
+    clear(): void;
 }
 
 type MyStackNode = {
@@ -14,7 +15,6 @@ type MyStackNode = {
 class StackClass implements MyStack {
     private _size: number = 0;
     private head?: MyStackNode;
-    private tail?: MyStackNode;
 
     size(): number {
         return this._size;
@@ -51,25 +51,45 @@ class StackClass implements MyStack {
         if(!this.head) return -1;
         return this.head.value;
     }
+
+    clear(): void {
+        if(!this.head) return;
+        this.head = undefined;
+        this._size = 0;
+    }
 }
 
-const myStack = new StackClass();
+const leftStack = new StackClass();
+const rightStack = new StackClass();
 
 const fs = require('fs');
 const input = fs.readFileSync('./예제.txt').toString().split('\n');
+const answer: string[] = [];
 
 for(let i = 1; i < input.length; i++) {
-    switch(input[i]) {
-        case "top":
-            console.log(myStack.top());
-        case "size":
-            console.log(myStack.size());
-        case "pop":
-            console.log(myStack.pop());
-        case "empty":
-            console.log(myStack.empty());
-        default:
-            const pushNumber = input[i].split(" ")[1];
-            myStack.push(parseInt(pushNumber));
+    const inputText: string = input[i].split("");
+    console.log(inputText);
+    while(leftStack.size() >= rightStack.size()) {
+        for(let j = 0; j < inputText.length; j++) {
+            switch(inputText[j]) {
+                case "(":
+                    leftStack.push(1);
+                    break;
+                case ")":
+                    rightStack.push(1);
+                    break;
+            }    
+        }
     }
+    console.log(leftStack.size(), rightStack.size())
+    if(leftStack.size() !== rightStack.size()) {
+        answer.push("NO");
+    }
+    if(leftStack.size() === rightStack.size()) {
+        answer.push("YES");
+    }
+    leftStack.clear();
+    rightStack.clear();
 }
+
+console.log(answer.join("\n"));
