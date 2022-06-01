@@ -1,99 +1,46 @@
-interface MyStack {
-    size(): number;
-    push(x: number): void;
-    pop(): number;
-    empty(): 0 | 1;
-    top(): number;
-    clear(): void;
-}
+// const fs = require('fs');
+// const input = fs.readFileSync('./예제.txt').toString().split('\n');
 
-type MyStackNode = {
-    value: number;
-    next?: MyStackNode;
-}
-
-class StackClass implements MyStack {
-    private _size: number = 0;
-    private head?: MyStackNode;
-
-    size(): number {
-        return this._size;
-    }
-
-    push(x: number): void {
-        const node: MyStackNode = { value: x };
-        if(!this.head) {
-            this.head = node;
-        } else {
-            node.next = this.head;
-            this.head = node;
-        }
-        this._size++;
-    }
-
-    pop(): number {
-        if(!this.head) {
-            return -1;
-        } else {
-            const value = this.head!.value;
-            this.head = this.head.next;
-            this._size--;
-            return value;
-        }
-    }
-
-    empty(): 0 | 1 {
-        if(!this.head) return 1;
-        return 0;
-    }
-
-    top(): number {
-        if(!this.head) return -1;
-        return this.head.value;
-    }
-
-    clear(): void {
-        if(!this.head) return;
-        this.head = undefined;
-        this._size = 0;
-    }
-}
-
-const leftStack = new StackClass();
-const rightStack = new StackClass();
-
-const fs = require('fs');
-const input = fs.readFileSync('./예제.txt').toString().split('\n');
+const proxyInput = [4, 1, 5, 2, 3];
+const proxyNumber = [1, 3, 7, 9, 5];
 const answer: string[] = [];
 
-for(let i = 1; i < input.length; i++) {
-    const inputText: string = input[i].split("");
-    console.log(inputText);
-    for(let j = 0; j < inputText.length; j++) {
-        switch(inputText[j]) {
-            case "(":
-                leftStack.push(1);
-                console.log("left");
-                break;
-            case ")":
-                rightStack.push(1);
-                console.log("right");
-                break;
-        }
-        if(leftStack.size() < rightStack.size()) {
-            answer.push("NO");
-            break;
+// 정렬 함수
+const sort = (arr: number[]): number[] => {
+    let inputArray = arr;
+    for(let j = 0; j< inputArray.length - 1; j++) {
+        for(let i = 0; i < inputArray.length - 1; i++) {
+            if(inputArray[i] > inputArray[i + 1]) {
+                let temp = inputArray[i + 1];
+                inputArray[i + 1] = inputArray[i];
+                inputArray[i] = temp;
+            }
         }
     }
-    console.log(leftStack.size(), rightStack.size());
-    if(leftStack.size() === rightStack.size()) {
-        answer.push("YES");
-    }
-    if(leftStack.size() > rightStack.size()) {
-        answer.push("NO");
-    }
-    leftStack.clear();
-    rightStack.clear();
+    return inputArray;
 }
 
-console.log(answer.join("\n"));
+const binarySearch = (nArray: number[], mArray: number[]): number => {
+    const find = (m: number) => {
+        let pointer = nArray.length / 2
+        let leftCursor = 0
+        let rightCursor = nArray.length - 1
+
+        while(m !== nArray[pointer]) {
+            if(m < nArray[pointer]) {
+                rightCursor = pointer - 1;
+                pointer = (leftCursor + rightCursor) / 2;
+            } else if(m > nArray[pointer]) {
+                leftCursor = pointer + 1;
+            }
+        }
+        return pointer;
+    }
+
+    for(let i = 0; i < mArray.length; i++) {
+        find(mArray[i]);
+    }
+}
+
+console.log(sort(proxyInput));
+// console.log(answer.join("\n"));

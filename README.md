@@ -44,3 +44,7 @@ Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap ou
 
 어제 풀지 못한 문제를 풀고 있는데, 예제는 전부 같은 출력값을 가지는데에도 불구하고 틀렸다고 뜬다.
 어디서 문제인지 다시 파악해보자.
+
+이분탐색 알고리즘 코드를 만드는 중.
+시간 남을 때 손으로 로직 써두고
+구현은 밤에 하는 습관을 들이자.
