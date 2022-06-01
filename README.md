@@ -39,3 +39,8 @@ ts-blockchain 강의를 수강 중. ts 기본 설정을 하는 방법과 js 모�
 
 9012번 문제를 타입스크립트로 푸는 중. while 문을 사용하는 과정에서 메모리 누수가 심한 것 같다. 다시 잘 짜보도록 하자.
 Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory 라고 한다. 
+
+### 22.06.01
+
+어제 풀지 못한 문제를 풀고 있는데, 예제는 전부 같은 출력값을 가지는데에도 불구하고 틀렸다고 뜬다.
+어디서 문제인지 다시 파악해보자.

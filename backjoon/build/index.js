@@ -53,24 +53,28 @@ const answer = [];
 for (let i = 1; i < input.length; i++) {
     const inputText = input[i].split("");
     console.log(inputText);
-    while (leftStack.size() >= rightStack.size()) {
-        for (let j = 0; j < inputText.length; j++) {
-            switch (inputText[j]) {
-                case "(":
-                    leftStack.push(1);
-                    break;
-                case ")":
-                    rightStack.push(1);
-                    break;
-            }
+    for (let j = 0; j < inputText.length; j++) {
+        switch (inputText[j]) {
+            case "(":
+                leftStack.push(1);
+                console.log("left");
+                break;
+            case ")":
+                rightStack.push(1);
+                console.log("right");
+                break;
+        }
+        if (leftStack.size() < rightStack.size()) {
+            answer.push("NO");
+            break;
         }
     }
     console.log(leftStack.size(), rightStack.size());
-    if (leftStack.size() !== rightStack.size()) {
-        answer.push("NO");
-    }
     if (leftStack.size() === rightStack.size()) {
         answer.push("YES");
+    }
+    if (leftStack.size() > rightStack.size()) {
+        answer.push("NO");
     }
     leftStack.clear();
     rightStack.clear();
