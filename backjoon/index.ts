@@ -1,46 +1,34 @@
-// const fs = require('fs');
-// const input = fs.readFileSync('./예제.txt').toString().split('\n');
-
-const proxyInput = [4, 1, 5, 2, 3];
-const proxyNumber = [1, 3, 7, 9, 5];
-const answer: string[] = [];
-
-// 정렬 함수
-const sort = (arr: number[]): number[] => {
-    let inputArray = arr;
-    for(let j = 0; j< inputArray.length - 1; j++) {
-        for(let i = 0; i < inputArray.length - 1; i++) {
-            if(inputArray[i] > inputArray[i + 1]) {
-                let temp = inputArray[i + 1];
-                inputArray[i + 1] = inputArray[i];
-                inputArray[i] = temp;
-            }
-        }
-    }
-    return inputArray;
+const fs = require('fs');
+const input: string[] = fs.readFileSync('./예제.txt').toString().split('\n');
+const compareArray = Array.from({length: input.length - 1}, (v, i) => i + 1);
+const reverseInput = []; // [1, 2, 5, 7, 8, 6, 3, 4]
+const buffer = [];
+const newAnswer = [];
+for(let i = 1; i < input.length; i++) {
+    reverseInput.unshift(parseInt(input[i]));
 }
 
-const binarySearch = (nArray: number[], mArray: number[]): number => {
-    const find = (m: number) => {
-        let pointer = nArray.length / 2
-        let leftCursor = 0
-        let rightCursor = nArray.length - 1
-
-        while(m !== nArray[pointer]) {
-            if(m < nArray[pointer]) {
-                rightCursor = pointer - 1;
-                pointer = (leftCursor + rightCursor) / 2;
-            } else if(m > nArray[pointer]) {
-                leftCursor = pointer + 1;
-            }
+while(reverseInput.length > 1) {
+    if(reverseInput[0] < reverseInput[1]){
+        buffer.push(reverseInput.shift());
+        console.log(1, [reverseInput, buffer, newAnswer]);
+    } else if(reverseInput[0] > reverseInput[1]) {
+        buffer.push(reverseInput.shift());
+        console.log(2, [reverseInput, buffer, newAnswer]);
+        while(buffer[buffer.length - 1]! > reverseInput[0]) {
+            newAnswer.unshift(buffer.pop());
+            console.log(3, [reverseInput, buffer, newAnswer]);
         }
-        return pointer;
-    }
-
-    for(let i = 0; i < mArray.length; i++) {
-        find(mArray[i]);
     }
 }
-
-console.log(sort(proxyInput));
-// console.log(answer.join("\n"));
+if(reverseInput.length === 1) {
+    buffer.push(reverseInput.shift());
+    console.log(4, [reverseInput, buffer, newAnswer]);
+    console.log([...buffer, ...newAnswer]);
+    console.log(compareArray)
+    if([...buffer, ...newAnswer] == [...compareArray]) {
+        console.log("YES");
+    } else {
+        console.log("NO");
+    }
+}

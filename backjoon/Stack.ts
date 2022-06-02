@@ -65,25 +65,25 @@ class StackExample implements Stack {
     }
 }
 
-const stack = new StackExample(); // 클래스 생성
-console.log(stack); // 초기 데이터
+// const stack = new StackExample(); // 클래스 생성
+// console.log(stack); // 초기 데이터
 
 // 데이터 추가
 
-stack.push('google');
-console.log(stack);
-stack.push('samsung');
-console.log(stack);
-stack.push('lg');
-console.log(stack);
+// stack.push('google');
+// console.log(stack);
+// stack.push('samsung');
+// console.log(stack);
+// stack.push('lg');
+// console.log(stack);
 
-// index 확인
-console.log(stack.search(0), stack.search(1), stack.search(2));
+// // index 확인
+// console.log(stack.search(0), stack.search(1), stack.search(2));
 
-// 데이터 제거
-stack.pop();
-console.log(stack);
-stack.pop();
-console.log(stack);
-stack.pop();
-console.log(stack);
+// // 데이터 제거
+// stack.pop();
+// console.log(stack);
+// stack.pop();
+// console.log(stack);
+// stack.pop();
+// console.log(stack);

@@ -48,3 +48,8 @@ Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap ou
 이분탐색 알고리즘 코드를 만드는 중.
 시간 남을 때 손으로 로직 써두고
 구현은 밤에 하는 습관을 들이자.
+
+### 22.06.02
+
+백준 1874번 해결 중, 로직은 거의 다 구현 완료하였고
+이제 답을 잘 나타내기만 하면 완료다!
