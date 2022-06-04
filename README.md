@@ -53,3 +53,7 @@ Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap ou
 
 백준 1874번 해결 중, 로직은 거의 다 구현 완료하였고
 이제 답을 잘 나타내기만 하면 완료다!
+
+### 22.06.03
+
+shift, unshift, push, pop 메소드의 시간복잡도가 O(n)... 너무 길다. 다른 방법을 찾거나 본래 스택을 가져와 구현하거나 하자!
