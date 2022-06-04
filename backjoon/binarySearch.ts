@@ -1,6 +1,6 @@
 const proxyInput = [4, 1, 5, 2, 3];
 const proxyNumber = [1, 3, 7, 9, 5];
-const answer: string[] = [];
+const binarySerachAnswer: string[] = [];
 
 // 정렬 함수
 const sort = (arr: number[]): number[] => {

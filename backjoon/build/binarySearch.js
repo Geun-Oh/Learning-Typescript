@@ -1,7 +1,7 @@
 "use strict";
 const proxyInput = [4, 1, 5, 2, 3];
 const proxyNumber = [1, 3, 7, 9, 5];
-const answer = [];
+const binarySerachAnswer = [];
 // 정렬 함수
 const sort = (arr) => {
     let inputArray = arr;
