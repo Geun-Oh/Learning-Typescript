@@ -57,3 +57,7 @@ Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap ou
 ### 22.06.03
 
 shift, unshift, push, pop 메소드의 시간복잡도가 O(n)... 너무 길다. 다른 방법을 찾거나 본래 스택을 가져와 구현하거나 하자!
+
+### 22.06.06
+
+버블 정렬에 대한 문제를 푸는 도중에 시간 초과로 막혀있다. 병합 정렬을 사용해야한다고 하니 이를 배우고 적용해보자.

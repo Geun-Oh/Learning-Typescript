@@ -1,21 +1,22 @@
 "use strict";
 const fs = require("fs");
 const input = fs.readFileSync('./예제.txt').toString().split('\n');
-const number = parseInt(input[0]);
-let answer = 0;
-const setCompare = (word) => {
-    let wordSplit = word.split(""); // ["h", "a", "p", "p", "y"]
-    let wordSet = new Set(wordSplit); // ["h", "a", "p", "y"]
-    if (wordSet.size === wordSplit.length) {
-        return true;
+let bubbleSortArr = input[1].split(" ");
+bubbleSortArr = bubbleSortArr.map((x) => parseInt(x));
+let swap = 0;
+const bubbleSort = (arr) => {
+    let inputArray = arr;
+    for (let j = 0; j < inputArray.length - 1; j++) {
+        for (let i = 0; i < inputArray.length - 1; i++) {
+            if (inputArray[i] > inputArray[i + 1]) {
+                let temp = inputArray[i + 1];
+                inputArray[i + 1] = inputArray[i];
+                inputArray[i] = temp;
+                swap++;
+            }
+        }
     }
-    else {
-        return false;
-    }
+    return inputArray;
 };
-for (let i = 1; i < number; i++) {
-    if (setCompare(input[i]) === true) {
-        answer++;
-    }
-}
-console.log(answer);
+bubbleSort(bubbleSortArr);
+console.log(swap);
