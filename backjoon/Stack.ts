@@ -22,7 +22,7 @@ class StackExample implements Stack {
         return this._size;
     }
 
-    // 스택 추가
+    // 머리에 추가
     push(value: string) {
         const node: StackNode = { value };
         if(this._size === 0) {
@@ -35,7 +35,7 @@ class StackExample implements Stack {
         this._size++;
     }
 
-    // 스택 제거
+    // 머리 제거
     pop() {
         if(!this.head) throw new Error("Stack is Empty!"); // 노드가 하나도 없다면 에러 발생
         if(this.head.value === this.tail?.value) {
@@ -44,6 +44,19 @@ class StackExample implements Stack {
         const next = this.head.next;
         this.head = next;
         this._size--;
+    }
+
+    // 꼬리에 추가
+    unshift(value: string) {
+        const node: StackNode = { value };
+        if(this._size === 0) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.tail!.next = node;
+            this.tail = node;
+        }
+        this._size++;
     }
 
     // 스택 검색 = index
