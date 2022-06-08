@@ -46,19 +46,6 @@ class StackExample implements Stack {
         this._size--;
     }
 
-    // 꼬리에 추가
-    unshift(value: string) {
-        const node: StackNode = { value };
-        if(this._size === 0) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            this.tail!.next = node;
-            this.tail = node;
-        }
-        this._size++;
-    }
-
     // 스택 검색 = index
     search(num: number): string {
         // 스택이 하나도 없거나 해당하는 스택이 없을 경우에 에러 발생
