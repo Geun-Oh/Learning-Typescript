@@ -7,7 +7,7 @@ class StackExample {
     get size() {
         return this._size;
     }
-    // 스택 추가
+    // 머리에 추가
     push(value) {
         const node = { value };
         if (this._size === 0) {
@@ -20,7 +20,7 @@ class StackExample {
         }
         this._size++;
     }
-    // 스택 제거
+    // 머리 제거
     pop() {
         var _a;
         if (!this.head)
