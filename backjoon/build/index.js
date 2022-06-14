@@ -1,21 +1,53 @@
 "use strict";
+/**
+ * 문자열을 나눈 뒤 양 끝부터 비교를 시작한다.
+ * 만일 양쪽이 다르다면 (왼쪽과 오른쪽에서 한칸 앞의 문자가 같은지) 확인하고 그렇다면 오른쪽 포인터를 이동하고 아닐 시
+ * (오른쪽과 왼쪽에서 한칸 뒤의 문자가 같은지) 확인하고 그렇다면 왼쪽 포인터를 이동한다. 이 이후에도 같은 현상이 일어난다면 "아무것도 아니다"를 출력
+ * if 문에서 만족하고 끝난다면 "유사 회문"을 출력
+ * 문제없이 끝난다면 "회문"을 출력
+ */
 const fs = require("fs");
-const string = fs.readFileSync("./예제.txt").toString().trim();
+const input = fs.readFileSync("./예제.txt").toString().trim().split("\n");
 const answer = [];
-for (let i = 0; i < string.length; i++) {
-    answer.push(string.substring(i, string.length));
-}
-const sort = (arr) => {
-    let inputArray = arr;
-    for (let j = 0; j < inputArray.length - 1; j++) {
-        for (let i = 0; i < inputArray.length - 1; i++) {
-            if (inputArray[i] > inputArray[i + 1]) {
-                let temp = inputArray[i + 1];
-                inputArray[i + 1] = inputArray[i];
-                inputArray[i] = temp;
-            }
+const [n, ...strings] = input;
+const palindromeChecker = (x) => {
+    const splited = x.split("");
+    let left = 0;
+    let right = splited.length - 1;
+    let palinCount = 0;
+    for (let i = 0; i < splited.length / 2; i++) {
+        if (left >= right) {
+            break;
+        }
+        else if (splited[left] === splited[right]) {
+            left++;
+            right--;
+        }
+        else if (left + 1 === right && splited[left] !== splited[right]) {
+            palinCount++;
+            break;
+        }
+        else if (splited[left + 1] === splited[right] && splited[left] === splited[right - 1]) {
+            if (left + 4 >= right)
+                return 1;
+            left += 2;
+            right -= 2;
+        }
+        else if (splited[left + 1] === splited[right]) {
+            left++;
+            palinCount++;
+        }
+        else if (splited[left] === splited[right - 1]) {
+            right--;
+            palinCount++;
+        }
+        else {
+            return 2;
         }
     }
-    return inputArray;
+    return palinCount > 1 ? 2 : palinCount;
 };
-console.log(sort(answer).join("\n"));
+for (let j = 0; j < n; j++) {
+    answer.push(palindromeChecker(strings[j]));
+}
+console.log(answer.join("\n"));
