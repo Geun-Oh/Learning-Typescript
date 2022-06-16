@@ -1,11 +1,1 @@
-10
-abbab
-babba
-aabcdeddcba
-aabab
-aapqbcbqpqaa
-abb
-abc
-aabcbcaa
-axaaxaa
-abcddadca
+35
