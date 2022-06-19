@@ -1,21 +1,22 @@
 "use strict";
 const fs = require("fs");
 const input = fs.readFileSync("./예제.txt").toString().trim().split("\n");
-const [n, ...nums] = input;
+const [n, nums] = input;
 const answer = [];
-const dpchecker = (x) => {
-    const num = Number(x);
-    const zeroMemory = new Array(num + 1).fill(0);
-    const oneMemory = new Array(num + 1).fill(0);
-    zeroMemory[0] = 1;
-    oneMemory[1] = 1;
-    for (let i = 2; i <= num; i++) {
-        zeroMemory[i] = zeroMemory[i - 1] + zeroMemory[i - 2];
-        oneMemory[i] = oneMemory[i - 1] + oneMemory[i - 2];
+const array = nums.split(" ");
+const targetArray = array.map(x => Number(x));
+const countArray = new Array(Number(n)).fill(0);
+countArray[0] = 1;
+let count = 0;
+for (let i = 1; i < n; i++) {
+    if (targetArray[i] > targetArray[i - 1]) {
+        if (targetArray[i] > targetArray[count]) {
+            countArray[i] = Math.max(...countArray) + 1;
+            count = i;
+        }
     }
-    answer.push(`${zeroMemory[num]} ${oneMemory[num]}`);
-};
-for (let j = 0; j < n; j++) {
-    dpchecker(nums[j]);
+    else if (targetArray[i] < targetArray[i - 1]) {
+        countArray[i] = Math.max(...countArray);
+    }
 }
-console.log(answer.join("\n"));
+console.log(countArray);
