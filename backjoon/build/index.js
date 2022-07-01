@@ -1,14 +1,20 @@
 "use strict";
 const fs = require("fs");
-const input = Number(fs.readFileSync("./예제.txt").toString().trim().split("\n"));
-let answer = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-for (let i = 0; i < input - 1; i++) {
-    const temp = [...answer];
-    answer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    for (let j = 0; j < 10; j++) {
+const input = fs.readFileSync("./예제.txt").toString().trim();
+const n = Number(input.split(" ")[0]);
+const m = Number(input.split(" ")[1]);
+const answer = Array.from(Array(n + 1), () => Array(m).fill(0));
+for (let i = 0; i < n + 1; i++) {
+    answer[i][0] = 1;
+}
+for (let i = 0; i < m; i++) {
+    answer[0][i] = 1;
+}
+for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n + 1; j++) {
         for (let k = 0; k < j + 1; k++) {
-            answer[j] += temp[j - k] % 10007;
+            answer[j][i] += answer[k][i - 1] % 1000000000;
         }
     }
 }
-console.log(answer.reduce((a, b) => a + b) % 10007);
+console.log(answer[n][m - 1] % 1000000000);
