@@ -1,19 +1,27 @@
 const fs = require("fs");
-const input = fs.readFileSync("./예제.txt").toString().trim();
-const n = Number(input.split(" ")[0]);
-const m = Number(input.split(" ")[1]);
-const answer: number[][] = Array.from(Array(n + 1), () => Array(m).fill(0));
-for(let i = 0; i < n + 1; i++) {
-    answer[i][0] = 1;
-}
-for(let i = 0; i < m; i++) {
-    answer[0][i] = 1;
-}
-for(let i = 1; i < m; i++) {
-    for(let j = 1; j < n + 1; j++) {
-        for(let k = 0; k < j + 1; k++) {
-            answer[j][i] += answer[k][i - 1] % 1000000000;
+const input = fs.readFileSync("./예제.txt").toString().trim().split("\n");
+const [ n, ...nums ] = input;
+let Arr = [...nums];
+
+const sort = (arr: number[]) => {
+    for(let j = 0; j< arr.length - 1; j++) {
+        for(let i = 0; i < arr.length - 1; i++) {
+            if(arr[i] > arr[i + 1]) {
+                let temp = arr[i + 1];
+                arr[i + 1] = arr[i];
+                arr[i] = temp;
+            }
         }
     }
+    return arr;
 }
-console.log(answer[n][m - 1] % 1000000000);
+
+Arr = sort(Arr.map(x => Number(x)));
+
+for(let i = 1; i < Number(n); i++) {
+    let newArr = [...Arr];
+    newArr[1] += newArr[0];
+    Arr = sort(newArr.slice(1, newArr.length));
+}
+
+console.log(Arr[0]);
