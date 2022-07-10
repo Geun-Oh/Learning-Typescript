@@ -1,24 +1,23 @@
 "use strict";
 const fs = require("fs");
-const input = fs.readFileSync("./예제.txt").toString().trim().split("\n");
-const [n, ...nums] = input;
-let Arr = [...nums];
-const sort = (arr) => {
-    for (let j = 0; j < arr.length - 1; j++) {
-        for (let i = 0; i < arr.length - 1; i++) {
-            if (arr[i] > arr[i + 1]) {
-                let temp = arr[i + 1];
-                arr[i + 1] = arr[i];
-                arr[i] = temp;
-            }
-        }
+const input = fs.readFileSync("./예제.txt").toString().trim().split(" ");
+const n = Number(input[0]);
+let m = Number(input[1]);
+let count = 1;
+while (n < m) {
+    if (m % 10 === 1) {
+        m = Math.floor(m / 10);
     }
-    return arr;
-};
-Arr = sort(Arr.map(x => Number(x)));
-for (let i = 1; i < Number(n); i++) {
-    let newArr = [...Arr];
-    newArr[1] += newArr[0];
-    Arr = sort(newArr.slice(1, newArr.length));
+    else if (m % 2 === 0) {
+        m = m / 2;
+    }
+    else {
+        count = -1;
+        break;
+    }
+    count++;
 }
-console.log(Arr[0]);
+if (n !== m) {
+    count = -1;
+}
+console.log(m, count);
