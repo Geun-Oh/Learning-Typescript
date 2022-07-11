@@ -8,8 +8,6 @@ for(let i = 0; i < n + 1; i++) {
     answer[i][0] = 1;
     answer[i][1] = i;
 }
-answer[4][2] = 2;
-answer[5][2] = 5;
 for(let i = 4; i < n + 1; i++) {
     for(let j = 2; j < m + 1; j++) {
         if(i / j < 2) {
@@ -17,7 +15,7 @@ for(let i = 4; i < n + 1; i++) {
         } else if(i / j === 2) {
             answer[i][j] = 2;
         } else {
-            answer[i][j] = (answer[i - 1][j] + answer[i - 3][j - 1] + answer[i - 5][j - 2]) % 1000000003;
+            answer[i][j] = (answer[i - 1][j] + answer[i - 2][j - 1]) % 1000000003;
         }
     }
 }
