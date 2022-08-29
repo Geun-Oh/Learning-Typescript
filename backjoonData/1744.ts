@@ -1,3 +1,7 @@
+/**
+ * 아무리 생각해도 반례가 떠오르지 않는다... 인터넷 상에 있는 모든 반례를 다 시도했는데...
+ * 0 퍼센트에서 바로 틀리는 걸 보면 뭔가 잘못하고 있는게 분명 있을 것이다.
+ */
 const fs = require("fs");
 const finput: string[] = fs.readFileSync("./예제.txt").toString().split("\n");
 const [n, ...input] = finput;

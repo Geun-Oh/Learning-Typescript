@@ -1,59 +1,38 @@
 "use strict";
 const fs = require("fs");
-const input = fs.readFileSync("./예제.txt").toString().trim().split(" ");
-const arr = input.map(x => Number(x));
-let lf = 0;
-let rf = 0;
-const sol = () => {
-    let answer = [];
-    if (arr[arr.length - 1] !== 0)
-        return 0;
-    if (arr.length === 1)
-        return 0;
-    if (arr[0] === arr[1]) {
-        answer[0] = 2;
-        answer[1] = 3;
-        lf = arr[0];
+const finput = fs.readFileSync("./예제.txt").toString().split("\n");
+const [n, ...input] = finput;
+const arr = input.map(x => Number(x)).sort((a, b) => a - b);
+let answer = 0;
+const sol = (arr) => {
+    if (arr.length === 1) {
+        answer = arr[0];
+        return;
     }
-    else {
-        answer[0] = 2;
-        answer[1] = 4;
-        lf = arr[0];
-        rf = arr[1];
+    const plus = arr.filter(x => x > 0);
+    const pluslen = plus.length;
+    for (let i = 0; i < pluslen; i++) {
+        if (plus[0] !== 1)
+            break;
+        plus.shift();
+        answer++;
     }
-    if (arr.length === 2) {
-        return answer[0];
+    if (plus.length % 2 === 1) {
+        const add = plus.shift();
+        answer += add;
     }
-    else if (arr.length === 3) {
-        return answer[1];
+    for (let i = 0; i < Math.ceil(plus.length / 2); i++) {
+        answer += plus[i * 2] * plus[i * 2 + 1];
     }
-    else if (arr.length > 3) {
-        for (let i = 2; i < arr.length - 1; i++) {
-            if (arr[i] === lf || arr[i] === rf) {
-                answer[i] = answer[i - 1] + 1;
-            }
-            else if (Math.abs(arr[i] - lf) === 2) {
-                answer[i] = answer[i - 1] + 3;
-                rf = arr[i];
-            }
-            else if (Math.abs(arr[i] - rf) === 2) {
-                answer[i] = answer[i - 1] + 3;
-                lf = arr[i];
-            }
-            else if (Math.abs(lf - rf) === 2) {
-                answer[i] = answer[i - 1] + 3;
-                if (arr[i + 1] === lf) {
-                    rf = arr[i];
-                }
-                else if (arr[i + 1] === rf) {
-                    lf = arr[i];
-                }
-                else {
-                    lf = arr[i];
-                }
-            }
-        }
-        return answer[answer.length - 1];
+    const minus = arr.filter(x => x < 0);
+    if (minus.length % 2 === 1) {
+        const min = minus.pop();
+        if (!arr.includes(0))
+            answer += min;
+    }
+    for (let i = 0; i < Math.ceil(minus.length / 2); i++) {
+        answer += minus[i * 2] * minus[i * 2 + 1];
     }
 };
-console.log(sol());
+sol(arr);
+console.log(answer);
