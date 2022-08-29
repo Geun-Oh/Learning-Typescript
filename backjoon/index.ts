@@ -1,35 +1,24 @@
 const fs = require("fs");
 const finput: string[] = fs.readFileSync("./예제.txt").toString().split("\n");
-const [n, ...input] = finput;
-const arr = input.map(x => Number(x)).sort((a, b) => a - b);
-let answer = 0;
-const sol = (arr: number[]) => {
-    if(arr.length === 1) {
-        answer = arr[0];
-        return;
-    } 
-    const plus = arr.filter(x => x > 0);
-    const pluslen = plus.length;
-    for(let i = 0; i < pluslen; i++) {
-        if(plus[0] !== 1) break;
-        plus.shift();
-        answer++;
-    }
-    if(plus.length % 2 === 1) {
-        const add = plus.shift();
-        answer += add!;
-    }
-    for(let i = 0; i < Math.ceil(plus.length / 2); i++) {
-        answer += plus[i * 2] * plus[i * 2 + 1];
-    }
-    const minus = arr.filter(x => x < 0);
-    if(minus.length % 2 === 1) {
-        const min = minus.pop();
-        if(!arr.includes(0)) answer += min!;
-    }
-    for(let i = 0; i < Math.ceil(minus.length / 2); i++) {
-        answer += minus[i * 2] * minus[i * 2 + 1];
+const [num, ...input] =finput;
+const [node, line, start] = num.split(' ');
+console.log(input, node, line, start)
+const newLine = new Array(Number(line)).fill([]);
+for(let i = 0; i < Number(line); i++) {
+    newLine[i] = input[i].split(" ").map(Number);
+}
+console.log(newLine)
+const order: number[] = [];
+const DFS = (start: number) => {
+    order.push(start);
+    for(let i = 1; i < Number(node); i++) {
+        if(newLine.includes([start, start + i])) {
+            if(order.includes(start + i)) continue;
+            DFS(start + i);
+            order.push(start + i);
+        }
     }
 }
-sol(arr);
-console.log(answer);
+
+DFS(1);
+console.log(order)
