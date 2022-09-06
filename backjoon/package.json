@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build" : "tsc",
-    "start": "tsc && node build/index.js"
+    "start": "tsc && node build/index.js",
+    "cpp": "g++ -o main main.cpp && ./main"
   },
   "author": "",
   "license": "ISC"
